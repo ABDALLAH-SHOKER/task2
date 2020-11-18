@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Water Project | Update Customer</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" type="text/css" href="../CSS/ImageText.css">
+	<link rel="stylesheet" type="text/css" href="../CSS/navbar.css">
+	<link rel="stylesheet" type="text/css" href="../CSS/dropdown.css">
+	<link rel="stylesheet" type="text/css" href="../CSS/FormStyle.css">
+</head>
+<body>
+
+	
+	
+	<div class="container">
+		<img src="Water6.jpg" class="bg-image" alt="Snow"><!-- image -->
+  		
+  		<nav class="top-right">
+  			<ul>
+  				<li><a href="../index.html">Main Page</a></li>
+                                   <li class="dropdown">
+  					<a class="dropbtn">employee</a>
+  					<div class="dropdown-content">
+						<a href="Addemployee.html">add</a>
+						<a href="Updateemployee.html">update</a>
+						<a href="SearchAbout.html">search</a>
+					</div>
+  				</li>
+
+  				<li class="dropdown">
+  					<a class="dropbtn">customer</a>
+  					<div class="dropdown-content">
+						<a href="../Customer/AddCustomer.html">add</a>
+						<a href="../Customer/UpdateCustomer.html">update</a>
+						<a href="../Customer/SearchAbout.html">search</a>
+					</div>
+  				</li>
+  				
+  				<li class="dropdown">
+  					<a class="dropbtn">types</a>
+  					<div class="dropdown-content">
+						<a href="../types/Addtypes.html">add</a>
+						<a href="../types/Updatetypes.html">update</a>
+						<a href="../types/SearchAbout.html">search</a>
+					</div>
+  				</li>
+  				
+
+
+
+
+
+				 <li class="dropdown">
+  					<a class="dropbtn">edit</a>
+  					<div class="dropdown-content">
+						<a href="../edit/Addedit.html">add</a>
+						<a href="../Customer/SearchAbout.html">serach</a>
+					</div>
+  				</li>
+
+  				<li class="dropdown">
+  					<a class="dropbtn">pays</a>
+  					<div class="dropdown-content">
+						<a href="../pays/Addpays.html"> add</a>
+						<a href="../pays/Updatepays.html">edit</a>
+						<a href="../pays/SearchAbout.html">search</a>
+					</div>
+  				</li>
+  			
+                              
+                              	<li class="dropdown">
+  					<a class="dropbtn">withdraw</a>
+  					<div class="dropdown-content">
+						<a href="../Addwithdraw.html">add</a>
+						<a href="../Updatewithdraw.html">edit</a>
+						<a href="../SearchAbout.html">search</a>
+					</div>
+  				</li>
+
+				<li class="dropdown">
+  					<a class="dropbtn">earn</a>
+  					<div class="dropdown-content">
+						<a href="../earn/Addearn.html">add</a>
+						<a href="../earn/Updateearn.html">update </a>
+						<a href="../earn/SearchAbout.html">search  </a>
+					</div>
+  				</li>
+
+
+</ul>
+  		</nav>
+		
+		</nav>
+		<div class="top-left">
+			<img src="fci_en2.png" style="width: 150px">
+		</div>
+
+		<!-- center of image -->
+		<div class="centered bg-text">
+			<?php  
+				$host = 'localhost';  // host name ..
+				$user = 'root';  // user name ..
+				$pass = '';	// password ..
+				$dp = 'filters';	// database name ..
+				//database connection 
+				$conn = mysqli_connect($host, $user, $pass, $dp); 
+				//connection failed
+				if(! $conn ) {
+					die('Could not connect: ' . mysqli_error());  
+				}else{
+					echo '<h1>Database connection</h1>';
+					echo '<p>Connected successfully</p>'; 
+				}
+
+				if ( isset( $_POST['submit'] ) ) {
+					$emp_ID = $_REQUEST['emp_ID'];
+  					$First_Name = $_REQUEST['First_Name'];
+					$Middle_Name = $_REQUEST['Middle_Name'];
+					$Last_Name = $_REQUEST['Last_Name'];
+					$Address = $_REQUEST['Address'];
+					$phone = $_REQUEST['phone'];
+					// insert data ..
+					$sql  ="UPDATE employee SET First_Name='$First_Name', Middle_Name='$Middle_Name', Last_Name='$Last_Name', Address='$Address', phone='$phone' WHERE emp_ID='$emp_ID'";
+					// check the operation ..
+					if(mysqli_query($conn, $sql)){
+						echo "<h3>and Update operation done</h3>";
+					}else{
+						echo "<h3>and Could not insert record: ". mysqli_error($conn) . "</h3>";
+					}
+				}
+				mysqli_close($conn);	// close connection ..
+			?>
+		</div>
+	</div>
+</body>
+</html>
